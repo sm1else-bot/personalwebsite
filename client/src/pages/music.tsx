@@ -70,7 +70,7 @@ export default function Music() {
             asChild
           >
             <a 
-              href="/assets/Someone Else EPK 2023-2.pdf" 
+              href="/assets/Someone%20Else%20EPK%2023-2.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2"
