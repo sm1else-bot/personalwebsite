@@ -10,6 +10,7 @@ import Music from "@/pages/music";
 import Art from "@/pages/art";
 import Writing from "@/pages/writing";
 import Contact from "@/pages/contact";
+import Resume from "@/pages/resume";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/music" component={Music} />
       <Route path="/art" component={Art} />
       <Route path="/writing" component={Writing} />
+      <Route path="/resume" component={Resume} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>

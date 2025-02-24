@@ -1,19 +1,7 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Music as MusicIcon, Radio, Disc } from "lucide-react";
-
-const releases = [
-  {
-    title: "Latest EP",
-    description: "Electronic music production showcasing various styles",
-    embedUrl: "https://open.spotify.com/embed/album/placeholder",
-  },
-  {
-    title: "DJ Mix Series",
-    description: "Monthly curated mix of electronic music",
-    embedUrl: "https://soundcloud.com/embed/placeholder",
-  },
-];
+import { Button } from "@/components/ui/button";
 
 export default function Music() {
   return (
@@ -59,32 +47,53 @@ export default function Music() {
           </Card>
         </div>
 
-        <div className="space-y-8">
-          {releases.map((release, index) => (
-            <motion.div
-              key={release.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Listen on Spotify</CardTitle>
+            <CardDescription>Check out my latest releases and playlists</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <iframe 
+              src="https://open.spotify.com/embed/artist/35Ir0ossYsmU5VHS1oVr8m" 
+              width="100%" 
+              height="352" 
+              frameBorder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              className="rounded-lg"
+            />
+          </CardContent>
+        </Card>
+
+        <div className="flex justify-center gap-4">
+          <Button 
+            size="lg"
+            variant="default"
+            asChild
+          >
+            <a 
+              href="/assets/epk.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
             >
-              <Card>
-                <CardHeader>
-                  <CardTitle>{release.title}</CardTitle>
-                  <CardDescription>{release.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <iframe
-                    src={release.embedUrl}
-                    width="100%"
-                    height="300"
-                    frameBorder="0"
-                    allow="encrypted-media"
-                    className="rounded-lg"
-                  />
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+              View EPK
+            </a>
+          </Button>
+          <Button 
+            size="lg"
+            variant="outline"
+            asChild
+          >
+            <a 
+              href="https://open.spotify.com/artist/35Ir0ossYsmU5VHS1oVr8m?si=Y55lj5IdTQeDYn-N_6MgaQ" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              Spotify Profile
+            </a>
+          </Button>
         </div>
       </motion.div>
     </div>

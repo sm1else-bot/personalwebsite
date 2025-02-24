@@ -8,6 +8,7 @@ const NavItems = [
   { label: "Music", path: "/music" },
   { label: "Art", path: "/art" },
   { label: "Writing", path: "/writing" },
+  { label: "Resume", path: "/resume" },
   { label: "Contact", path: "/contact" },
 ];
 
