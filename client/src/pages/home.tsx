@@ -8,13 +8,13 @@ export default function Home() {
       title: "Data Scientist",
       description: "Machine learning and data analysis projects",
       icon: <BrainCircuit />,
-      href: "/projects?category=data",
+      href: "/projects/data",
     },
     {
       title: "Software Developer",
       description: "Web and application development",
       icon: <Code />,
-      href: "/projects?category=software",
+      href: "/projects/software",
     },
     {
       title: "Music Producer",

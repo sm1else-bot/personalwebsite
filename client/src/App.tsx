@@ -17,6 +17,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/projects" component={Projects} />
+      <Route path="/projects/:category" component={Projects} />
       <Route path="/music" component={Music} />
       <Route path="/art" component={Art} />
       <Route path="/writing" component={Writing} />
