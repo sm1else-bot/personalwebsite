@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSearch } from "wouter/use-location";
+import { useLocation } from "wouter";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
@@ -12,9 +12,9 @@ const categories = [
 ];
 
 export default function Projects() {
-  const search = useSearch();
-  const params = new URLSearchParams(search);
-  const activeCategory = params.get("category") || "all";
+  const [location, setLocation] = useLocation();
+  const query = new URLSearchParams(location.split("?")[1] || "");
+  const activeCategory = query.get("category") || "all";
 
   const { data: projects, isLoading } = useQuery<Project[]>({
     queryKey: [activeCategory === "all" ? "/api/projects" : `/api/projects/${activeCategory}`],
@@ -49,11 +49,9 @@ export default function Projects() {
             <TabsTrigger
               key={category.id}
               value={category.id}
-              asChild
+              onClick={() => setLocation(`/projects${category.id === "all" ? "" : `?category=${category.id}`}`)}
             >
-              <a href={`/projects${category.id === "all" ? "" : `?category=${category.id}`}`}>
-                {category.label}
-              </a>
+              {category.label}
             </TabsTrigger>
           ))}
         </TabsList>

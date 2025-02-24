@@ -5,11 +5,21 @@ import { Toaster } from "@/components/ui/toaster";
 import { Navbar } from "@/components/layout/navbar";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import Projects from "@/pages/projects";
+import Music from "@/pages/music";
+import Art from "@/pages/art";
+import Writing from "@/pages/writing";
+import Contact from "@/pages/contact";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/projects" component={Projects} />
+      <Route path="/music" component={Music} />
+      <Route path="/art" component={Art} />
+      <Route path="/writing" component={Writing} />
+      <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );
