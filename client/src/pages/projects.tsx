@@ -112,23 +112,7 @@ export default function Projects() {
           </TabsList>
         </Tabs>
 
-        {showServices && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-foreground">Professional Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {services[activeCategory as keyof typeof services].map((service) => (
-                <Card key={service.title} className="border-primary/20">
-                  <CardHeader>
-                    <CardTitle>{service.title}</CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {projects?.map((project, index) => (
             <motion.div
               key={project.id}
@@ -164,6 +148,22 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        {showServices && (
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-foreground">Professional Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {services[activeCategory as keyof typeof services].map((service) => (
+                <Card key={service.title} className="border-primary/20">
+                  <CardHeader>
+                    <CardTitle>{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
       </motion.div>
     </div>
   );
