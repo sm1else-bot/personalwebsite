@@ -11,6 +11,45 @@ const categories = [
   { id: "software", label: "Software Development" },
 ];
 
+const services = {
+  software: [
+    {
+      title: "Web Development",
+      description: "Modern, responsive web applications using cutting-edge technologies",
+    },
+    {
+      title: "Digital Transformation",
+      description: "Strategic modernization of legacy systems and business processes",
+    },
+    {
+      title: "Mobile App Development",
+      description: "Native and cross-platform mobile applications",
+    },
+    {
+      title: "Cloud Architecture",
+      description: "Scalable cloud solutions and infrastructure design",
+    },
+  ],
+  data: [
+    {
+      title: "AI for Business",
+      description: "Custom AI solutions to automate and optimize business processes",
+    },
+    {
+      title: "Data Analytics",
+      description: "Advanced analytics and business intelligence solutions",
+    },
+    {
+      title: "Machine Learning",
+      description: "Custom ML models for prediction and automation",
+    },
+    {
+      title: "Natural Language Processing",
+      description: "Text analysis and processing solutions",
+    },
+  ],
+};
+
 export default function Projects() {
   const [match, params] = useRoute("/projects/:category");
   const [, setLocation] = useLocation();
@@ -37,6 +76,8 @@ export default function Projects() {
       </div>
     );
   }
+
+  const showServices = activeCategory !== "all" && services[activeCategory as keyof typeof services];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -71,6 +112,22 @@ export default function Projects() {
           </TabsList>
         </Tabs>
 
+        {showServices && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">Professional Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {services[activeCategory as keyof typeof services].map((service) => (
+                <Card key={service.title} className="border-primary/20">
+                  <CardHeader>
+                    <CardTitle>{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects?.map((project, index) => (
             <motion.div
@@ -79,7 +136,7 @@ export default function Projects() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="h-full flex flex-col">
+              <Card className="h-full flex flex-col border-primary/20">
                 {project.imageUrl && (
                   <img
                     src={project.imageUrl}

@@ -3,6 +3,25 @@ import { motion } from "framer-motion";
 import { Music as MusicIcon, Radio, Disc } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const services = [
+  {
+    title: "Ghost Production",
+    description: "Custom electronic music production tailored to your vision",
+  },
+  {
+    title: "Co-Production",
+    description: "Collaborative music production to enhance your existing tracks",
+  },
+  {
+    title: "Background Scoring",
+    description: "Original music composition for films, games, and media",
+  },
+  {
+    title: "Mixing & Mastering",
+    description: "Professional audio engineering services for pristine sound",
+  }
+];
+
 export default function Music() {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -15,36 +34,15 @@ export default function Music() {
           Music Production & DJing
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <Card>
-            <CardHeader>
-              <MusicIcon className="w-12 h-12 text-primary mb-4" />
-              <CardTitle>Producer</CardTitle>
-              <CardDescription>
-                Creating electronic music with a focus on innovative sound design
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <Radio className="w-12 h-12 text-primary mb-4" />
-              <CardTitle>DJ</CardTitle>
-              <CardDescription>
-                Performing at venues and creating curated mix series
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <Disc className="w-12 h-12 text-primary mb-4" />
-              <CardTitle>Sound Design</CardTitle>
-              <CardDescription>
-                Crafting unique sounds and audio experiences
-              </CardDescription>
-            </CardHeader>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {services.map((service, index) => (
+            <Card key={service.title} className="border-primary/20">
+              <CardHeader>
+                <CardTitle>{service.title}</CardTitle>
+                <CardDescription>{service.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
         </div>
 
         <Card className="mb-8">
@@ -72,7 +70,7 @@ export default function Music() {
             asChild
           >
             <a 
-              href="/assets/epk.pdf" 
+              href="/assets/Someone Else EPK 2023-2.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2"
