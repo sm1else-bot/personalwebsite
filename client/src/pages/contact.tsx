@@ -23,25 +23,24 @@ export default function Contact() {
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: InsertMessage) => {
-      await apiRequest("POST", "/api/messages", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+  const handleSubmit = (data: InsertMessage) => {
+    // Create mailto link with form data
+    const subject = `Contact Form: ${data.name}`;
+    const body = `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+    const mailtoLink = `mailto:jessenth.work@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    toast({
+      title: "Email client opened",
+      description: "Your message has been prepared in your email client."
+    });
+    
+    // Reset form
+    form.reset();
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -81,7 +80,7 @@ export default function Contact() {
             <CardContent>
               <Form {...form}>
                 <form
-                  onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                  onSubmit={form.handleSubmit(handleSubmit)}
                   className="space-y-6"
                 >
                   <FormField
@@ -133,9 +132,8 @@ export default function Contact() {
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={mutation.isPending}
                   >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
+                    Open Email Client
                   </Button>
                 </form>
               </Form>
